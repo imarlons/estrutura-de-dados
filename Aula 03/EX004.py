@@ -6,4 +6,4 @@ g = float(input('digite o chute inicial g: '))
 novoG = g - (g**3 - c) / (3 * g**2)
 
 # mostra o resultado
-print(f"O novo chute mais próximo do zero é: {novoG}")
+print(f"O novo chute mais próximo do zero é: {novoG:.2f}")
