@@ -1,25 +1,22 @@
 def ehPrimo(numero):
-    # números menores ou iguais a 1 não são primos
-    if numero <= 1:
+    # se o número for menor que 2, não é primo.
+    if numero < 2:
         return False
-    # checa divisores de 2 até a raiz quadrada de número
-    for i in range(2, int(numero**0.5) + 1):
+    # checa se o número é divisível por qualquer valor entre 2 e ele mesmo.
+    for i in range(2, numero):
         if numero % i == 0:
             return False
+    # se não encontrou nenhum divisor, é primo.
     return True
 
-# lista para armazenar os números primos encontrados
-primos = []
-
-# startando a verificação a partir do número 2
-num = 2
+primosEncontrados = 0
+start = 2
 
 print('os primeiros 100 números primos são: ')
+while primosEncontrados < 100:
+    if ehPrimo(start):
+        print(start, end='\n')
+        primosEncontrados += 1
+    start += 1
 
-# loop para encontrar os primeiros 100 números primos
-while len(primos) < 100:
-    if ehPrimo(num):
-        primos.append(num)
-    num += 1
-
-print(primos)
+print('\n')
