@@ -16,8 +16,8 @@ saldo = 0
 meses = 0
 
 while (saldo < entrada_casa):
-    saldo += economia_mensal # economia do mês
     saldo += saldo * taxa_juros # rendimento da poupança
+    saldo += economia_mensal # economia do mês
     meses += 1
 
 print(f'você precisará de {meses} meses para juntar o valor da entrada.')
