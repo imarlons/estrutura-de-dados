@@ -2,14 +2,13 @@
 # Nome do Estudante:
 estudante = 'Marlon da Silva'
 
-import random
-import string
+import random, string, os
 
 # -----------------------------------
 # CÓDIGO AUXILIAR
 # -----------------------------------
 
-ARQUIVO_LISTA_PALAVRAS = "palavras.txt"
+ARQUIVO_LISTA_PALAVRAS = os.path.join(os.path.dirname(__file__), "palavras.txt")
 
 def carregar_palavras():
     """
@@ -53,8 +52,10 @@ def jogador_venceu(palavra_secreta, letras_escolhidas):
            'letras_escolhidas' e False caso contrário
     """
     # ESCREVA SEU CÓDIGO AQUI E APAGUE "pass":
-    pass
-
+    for letra in palavra_secreta:
+        if letra not in letras_escolhidas:
+            return False
+    return True
 
 def progresso_atual_da_palavra(palavra_secreta, letras_escolhidas):
     """
@@ -66,8 +67,13 @@ def progresso_atual_da_palavra(palavra_secreta, letras_escolhidas):
            na palavra secreta que ainda não foram adivinhadas
     """
     # ESCREVA SEU CÓDIGO AQUI E APAGUE "pass":
-    pass
-
+    resultado = ''
+    for letra in palavra_secreta:
+        if letra in letras_escolhidas:
+            resultado += letra
+        else:
+            resultado += '*'
+    return resultado
 
 def letras_ainda_disponiveis(letras_escolhidas):
     """
@@ -77,9 +83,11 @@ def letras_ainda_disponiveis(letras_escolhidas):
            As letras devem ser retornadas em ordem alfabética.
     """
     # ESCREVA SEU CÓDIGO AQUI E APAGUE "pass":
-    pass
-
-
+    disponiveis = ''
+    for letra in string.ascii_lowercase: # alfabeto minúsculo
+        if letra not in letras_escolhidas:
+            disponiveis += letra
+    return disponiveis
 
 def forca(palavra_secreta, com_ajuda):
     """
@@ -124,9 +132,75 @@ def forca(palavra_secreta, com_ajuda):
       normalmente.
     """
     # ESCREVA SEU CÓDIGO AQUI E APAGUE "pass":
-    pass
+    tentativas = 10
+    letras_escolhidas = []
+    vogais = 'aeiou'
 
+    print('====================================')
+    print('BEM-VINDO AO JOGO DA FORCA! 💀🪢')
+    print('A PALAVRA SECRETA TEM {} LETRA(S).'.format(len(palavra_secreta)))
+    print('VOCÊ TEM 10 TENTATIVAS (⭐) PARA ADIVINHAR A PALAVRA!')
+    print('====================================')
 
+    while tentativas > 0 and not jogador_venceu(palavra_secreta, letras_escolhidas):
+      print('====================================')
+      print('VOCÊ TEM {} TENTATIVA(S) RESTANTE(S)'.format(tentativas))
+      print('LETRAS DISPONÍVEIS: {}.'.format(letras_ainda_disponiveis(letras_escolhidas)))
+
+      palavra_atual = progresso_atual_da_palavra(palavra_secreta, letras_escolhidas)
+      print('PALAVRA: {}.'.format(palavra_atual))
+
+      escolha = input('POR FAVOR, ESCOLHA UMA LETRA: ').lower()
+
+      if len(escolha) == 1:
+          if escolha == '!' and com_ajuda:
+              if tentativas >= 3:
+                  tentativas -= 3
+                  letra_revelada = ''
+                  for letra in palavra_secreta:
+                      if letra not in letras_escolhidas:
+                          letras_escolhidas.append(letra)
+                          letra_revelada = letra
+                          break
+                  if letra_revelada:
+                      print('#AJUDA! A LETRA "{}" FOI REVELADA! VOCÊ PERDEU 3 TENTATIVAS!'.format(letra_revelada))
+                  else:
+                      print('NÃO HÁ MAIS LETRAS PARA REVELAR!')
+              else:
+                  print('VOCÊ NÃO TEM TENTATIVAS SUFICIENTES PARA USAR A AJUDA. TENTE NOVAMENTE!')
+          elif escolha.isalpha():
+              if escolha in letras_escolhidas:
+                  print('OPSSS! VOCÊ JÁ ESCOLHEU A LETRA "{}". TENTE NOVAMENTE!'.format(escolha))
+              elif escolha in palavra_secreta:
+                  letras_escolhidas.append(escolha)
+                  print('UHUL! VOCÊ ACERTOU UMA LETRA!')
+              else:
+                  letras_escolhidas.append(escolha)
+                  if escolha in vogais:
+                      tentativas -= 2
+                      print('OPSSS! ESTA VOGAL NÃO ESTÁ NA PALAVRA. VOCÊ PERDEU 2 TENTATIVAS (⭐).')
+                  else:
+                      tentativas -= 1
+                      print('OPSSS! ESTA CONSOANTE NÃO ESTÁ NA PALAVRA. VOCÊ PERDEU 1 TENTATIVA (⭐).')
+          else:
+              print('ENTRADA INVÁLIDA! DIGITE UMA LETRA!')
+      else:
+          print('ENTRADA INVÁLIDA! DIGITE APENAS UMA LETRA!')
+
+    print('====================================')
+    palavra_final = progresso_atual_da_palavra(palavra_secreta, letras_escolhidas)
+    print('A PALAVRA ERA: {}.'.format(palavra_secreta))
+
+    if jogador_venceu(palavra_secreta, letras_escolhidas):
+        letras_distintas = len(set(palavra_secreta))
+        tamanho_palavra = len(palavra_secreta)
+        pontuacao = tentativas + (4 * letras_distintas) + (3 * tamanho_palavra)
+        print('PARABÉNS! VOCÊ VENCEU! 🎊')
+        print('SUA PONTUAÇÃO FINAL É: {}.'.format(pontuacao))
+    else:
+        pontuacao = 0
+        print('GAME OVER! VOCÊ PERDEU!')
+        print('SUA PONTUAÇÃO FINAL É: {}.'.format(pontuacao))
 
 # Quando você terminar a função 'forca', vá até o fim do arquivo descomentando
 # as linhas indicadas para poder testar seu jogo
@@ -134,14 +208,12 @@ def forca(palavra_secreta, com_ajuda):
 if __name__ == "__main__":
     # Para testar seu jogo, descomente as seguintes 3 linhas:
 
-    # palavra_secreta = escolhe_palavra(lista_de_palavras)
-    # com_ajuda = False
-    # forca(palavra_secreta, com_ajuda)
+    palavra_secreta = escolhe_palavra(lista_de_palavras)
+    com_ajuda = True
+    forca(palavra_secreta, com_ajuda)
 
     # Depois que você implementar a funcionalidade 'com_ajuda', mude
     # o valor de 'com_ajuda' acima para e tente testar usando "!" como
     # letra escolhida!
 
     ###############
-    pass
-
