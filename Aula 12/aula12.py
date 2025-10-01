@@ -25,7 +25,16 @@ def somaDosDigitos(string):
             print('não da pra converter: {}'.format(digito))
     return total
 
-print(somaDosDigitos('123'))
-print(somaDosDigitos('123abc'))
-
-
+# print(somaDosDigitos('123'))
+# print(somaDosDigitos('123abc'))
+    
+try:
+    valorA = int(input('informe um número: '))
+    valorB = int(input('informe outro número: '))
+    print(valorA / valorB)
+except ZeroDivisionError:
+    print('ERRO! divisão por zero!')
+except ValueError:
+    print('ERRO! você precisa informar um número!')
+except:
+    print('ERRO! algo deu errado!')
