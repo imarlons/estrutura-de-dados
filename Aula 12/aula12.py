@@ -12,7 +12,20 @@
 
 # TypeError: unsupported operand type(s) for /: 'str' and 'int'
 # print('4' / 2)
-    
 
+def somaDosDigitos(string):
+    # string = string só com dígitos númericos
+
+    total = 0
+
+    for digito in string:
+        try:
+            total += int(digito)
+        except:
+            print('não da pra converter: {}'.format(digito))
+    return total
+
+print(somaDosDigitos('123'))
+print(somaDosDigitos('123abc'))
 
 
