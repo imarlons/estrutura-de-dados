@@ -64,7 +64,12 @@ def obter_frequencia_letras(palavra):
         cada string é uma letra de 'palavra' e o inteiro
         correspondente é a frequência daquela letra na palavra
     """
-    pass
+    frequencias = {}
+
+    for letra in palavra:
+        frequencias[letra] = frequencias.get(letra, 0) + 1
+
+    return frequencias
 
 
 ### Problema 3: Similaridade ###
@@ -208,10 +213,10 @@ if __name__ == "__main__":
     # print(freq_amigo_mundo)   # Deve imprimir {'olá': 1, 'amigos': 1}
 
     # Testes Problema 2: Frequencia de letras
-    #freq1 = obter_frequencia_letras('berro')
-    #freq2 = obter_frequencia_letras('sois')
-    #print(freq1)      #  Deve imprimir {'b': 1, 'e': 1, 'r': 2, 'o': 1}
-    #print(freq2)      #  Deve imprimir {'s': 2, 'o': 1, 'i': 1}
+    freq1 = obter_frequencia_letras('berro')
+    freq2 = obter_frequencia_letras('sois')
+    print(freq1)      #  Deve imprimir {'b': 1, 'e': 1, 'r': 2, 'o': 1}
+    print(freq2)      #  Deve imprimir {'s': 2, 'o': 1, 'i': 1}
 
     ## Testes Problema 3: Similaridade
     #diretorio_teste = "testes/testes_estudantes/"
