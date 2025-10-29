@@ -1,12 +1,15 @@
-numeros = [30, 40, 50]
+# numeros = [30, 40, 50]
+palavras = ['oi', 'ai', 'casa']
 
 def somarTamanho(lista):
-    resultado = 0
+    resultado = ''
     for i in lista:
         resultado += i
-    return resultado
+    return len(resultado)
 
-print(somarTamanho(numeros))
+# print(somarTamanho(numeros))
+print(somarTamanho(palavras)) # deve imprimir 8
+print(somarTamanho([''])) # deve imprimir 0
 
 
 
