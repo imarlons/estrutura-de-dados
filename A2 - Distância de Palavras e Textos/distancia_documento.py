@@ -140,8 +140,24 @@ def palavras_mais_frequentes(dicionario1, dicionario2):
     Se muitas palavras estiverem empatadas (tem a mesma frequência), retorne uma lista
     delas ordenada alfabeticamente.
     """
-    pass
+    frequencias_combinadas = dicionario1.copy()
 
+    for palavra, freq in dicionario2.items():
+        frequencias_combinadas[palavra] = frequencias_combinadas.get(palavra, 0) + freq
+
+    if not frequencias_combinadas:
+        return []
+    
+    max_freq = max(frequencias_combinadas.values())
+    mais_frequentes = []
+
+    for palavra, freq in frequencias_combinadas.items():
+        if freq == max_freq:
+            mais_frequentes.append(palavra)
+
+    mais_frequentes.sort()
+
+    return mais_frequentes
 
 ### Problema 5: ENcontrando TF-IDF ###
 # Referência: https://pt.wikipedia.org/wiki/Tf%E2%80%93idf
@@ -260,9 +276,9 @@ if __name__ == "__main__":
     # print(similaridade_palavra4)       # Deve imprimir 0.4
 
     ## Testes Problema 4: Palavras mais comuns
-    #freq_dic1, freq_dic2 = {"ola": 5, "mundo": 1}, {"ola": 1, "mundo": 5}
-    #mais_frequente = palavras_mais_frequentes(freq_dic1, freq_dic2)
-    #print(mais_frequente)      # Deve imprimir ["mundo", "ola"]
+    freq_dic1, freq_dic2 = {"ola": 5, "mundo": 1}, {"ola": 1, "mundo": 5}
+    mais_frequente = palavras_mais_frequentes(freq_dic1, freq_dic2)
+    print(mais_frequente)      # Deve imprimir ["mundo", "ola"]
 
     ## Testes Problema 5: Encontre TF-IDF
     #tf_arquivo = 'testes/testes_estudantes/ola_mundo.txt'
