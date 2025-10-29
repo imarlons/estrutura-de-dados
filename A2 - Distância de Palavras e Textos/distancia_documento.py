@@ -172,7 +172,21 @@ def obter_tf(arquivo):
         no documento) / (número total de palavras no documento)
     * Use a função obter_frequencia definida antes.
     """
-    pass
+    texto = carregar_arquivo(arquivo)
+    lista_palavras = texto_para_lista(texto)
+    frequencias = obter_frequencia(lista_palavras)
+
+    total_palavras = len(lista_palavras)
+
+    if total_palavras == 0:
+        return {}
+        
+    tf_scores = {}
+    
+    for palavra, count in frequencias.items():
+        tf_scores[palavra] = count / total_palavras
+        
+    return tf_scores
 
 def obter_idf(arquivos):
     """
@@ -186,7 +200,25 @@ def obter_idf(arquivos):
       com math.log10()
 
     """
-    pass
+    total_documentos = len(arquivos)
+    
+    doc_counts = {}
+    
+    for arquivo in arquivos:
+        texto = carregar_arquivo(arquivo)
+        lista_palavras = texto_para_lista(texto)
+        
+        palavras_unicas = set(lista_palavras)
+        
+        for palavra in palavras_unicas:
+            doc_counts[palavra] = doc_counts.get(palavra, 0) + 1
+            
+    idf_scores = {}
+    
+    for palavra, count in doc_counts.items():
+        idf_scores[palavra] = math.log10(total_documentos / count)
+        
+    return idf_scores
 
 def obter_tfidf(arquivo_tf, arquivos_idf):
     """
@@ -202,7 +234,22 @@ def obter_tfidf(arquivo_tf, arquivos_idf):
 
         * TF-IDF(i) = TF(i) * IDF(i)
         """
-    pass
+    tf_scores = obter_tf(arquivo_tf)
+    
+    idf_scores = obter_idf(arquivos_idf)
+    
+    tfidf_resultados = {}
+    
+    for palavra, tf in tf_scores.items():
+        idf = idf_scores.get(palavra, 0.0)
+        
+        tfidf_resultados[palavra] = tf * idf
+        
+    lista_de_tuplas = list(tfidf_resultados.items())
+    
+    lista_ordenada = sorted(lista_de_tuplas, key=lambda item: (item[1], item[0]))
+    
+    return lista_ordenada
 
 
 if __name__ == "__main__":
@@ -281,11 +328,21 @@ if __name__ == "__main__":
     # print(mais_frequente)      # Deve imprimir ["mundo", "ola"]
 
     ## Testes Problema 5: Encontre TF-IDF
-    #tf_arquivo = 'testes/testes_estudantes/ola_mundo.txt'
-    #idf_arquivos = ['testes/testes_estudantes/ola_mundo.txt', 'testes/testes_estudantes/ola_amigos.txt']
-    #tf = obter_tf(tf_arquivo)
-    #idf = obter_idf(idf_arquivos)
-    #tf_idf = obter_tfidf(tf_arquivo, idf_arquivos)
-    #print(tf)     # Deve imprimir {'ola': 0.6666666666666666, 'mundo': 0.3333333333333333}
-    #print(idf)    # Deve imprimir {'ola': 0.0, 'mundo': 0.3010299956639812, 'amigos': 0.3010299956639812}
-    #print(tf_idf) # Deve imprimir [('ola', 0.0), ('mundo', 0.10034333188799373)]
+    # pega o caminho absoluto do diretório onde este script está localizado
+    DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
+    # cria o caminho para a pasta de testes de forma segura
+    diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
+    # cria o caminho completo para cada arquivo
+    path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
+    path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
+    
+    tf_arquivo = path_ola_mundo
+    idf_arquivos = [path_ola_mundo, path_ola_amigos]
+
+    tf = obter_tf(tf_arquivo)
+    idf = obter_idf(idf_arquivos)
+    tf_idf = obter_tfidf(tf_arquivo, idf_arquivos)
+
+    print(tf)     # Deve imprimir {'ola': 0.6666666666666666, 'mundo': 0.3333333333333333}
+    print(idf)    # Deve imprimir {'ola': 0.0, 'mundo': 0.3010299956639812, 'amigos': 0.3010299956639812}
+    print(tf_idf) # Deve imprimir [('ola', 0.0), ('mundo', 0.10034333188799373)]
