@@ -1,11 +1,11 @@
-def contarPontos(x):
-    if x == 1:
-        return 1
-    elif x == 2:
-        return 2
-    elif x == 3:
-        return 4
-    else: 
-        return contarPontos(x-1) + contarPontos(x-2) + contarPontos(x-3)
-    
-print(contarPontos(3))
+dicionario = {1: 1, 2: 2, 3: 4}
+
+def contarPontos(i, dicionario):
+    if i in dicionario:
+        return dicionario[i]
+    else:
+        resposta = contarPontos(i-1, dicionario) + contarPontos(i-2, dicionario) + contarPontos(i-3, dicionario)
+    dicionario[i] = resposta
+    return resposta
+
+print(contarPontos(100, dicionario))
