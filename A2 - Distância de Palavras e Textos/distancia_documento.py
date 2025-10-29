@@ -276,9 +276,9 @@ if __name__ == "__main__":
     # print(similaridade_palavra4)       # Deve imprimir 0.4
 
     ## Testes Problema 4: Palavras mais comuns
-    freq_dic1, freq_dic2 = {"ola": 5, "mundo": 1}, {"ola": 1, "mundo": 5}
-    mais_frequente = palavras_mais_frequentes(freq_dic1, freq_dic2)
-    print(mais_frequente)      # Deve imprimir ["mundo", "ola"]
+    # freq_dic1, freq_dic2 = {"ola": 5, "mundo": 1}, {"ola": 1, "mundo": 5}
+    # mais_frequente = palavras_mais_frequentes(freq_dic1, freq_dic2)
+    # print(mais_frequente)      # Deve imprimir ["mundo", "ola"]
 
     ## Testes Problema 5: Encontre TF-IDF
     #tf_arquivo = 'testes/testes_estudantes/ola_mundo.txt'
