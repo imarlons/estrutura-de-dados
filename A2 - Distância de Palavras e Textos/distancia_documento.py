@@ -1,11 +1,9 @@
 ﻿# Trabalho 2
-# Nome do Estudante:
+# Nome do Estudante: Marlon da Silva
 
 # Objetivo: testar a similaridade entre dois textos comparando diferentes tipos de estatística.
 
-import string
-import math
-
+import string, math, os
 
 ### Não MODIFIQUE ESTA FUNÇÃO
 def carregar_arquivo(nome_arquivo):
@@ -16,7 +14,7 @@ def carregar_arquivo(nome_arquivo):
         string, conteúdo de arquivo
     """
     # print("Loading file %s" % nome_arquivo)
-    inFile = open(nome_arquivo, 'r')
+    inFile = open(nome_arquivo, 'r', encoding='utf-8')
     line = inFile.read().strip()
     for char in string.punctuation:
         line = line.replace(char, "")
@@ -33,7 +31,7 @@ def texto_para_lista(texto):
     SAÍDA:
         lista com as palavras da entrada, cada palavra é um elemento da lista
     """
-    pass
+    return texto.split()
 
 
 ### Problema 1: Obter a frerquência ###
@@ -173,11 +171,25 @@ if __name__ == "__main__":
     ###############################################################
 
     ## Teste do Problema 0: Preparar dados
-    #diretorio_teste = "testes/testes_estudantes/"
-    #ola_mundo, ola_amigo = carregar_arquivo(diretorio_teste + 'ola_mundo.txt'), carregar_arquivo(diretorio_teste + 'ola_amigos.txt')
-    #mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
-    #print(mundo)      # Deve imprimir ['olá', 'mundo', 'olá']
-    #print(amigo)     # Deve imprimir ['olá', 'amigos']
+    # diretorio_teste = "A2 - Distância de Palavras e Textos/testes/"
+    # ola_mundo, ola_amigo = carregar_arquivo(diretorio_teste + 'ola_mundo.txt'), carregar_arquivo(diretorio_teste + 'ola_amigos.txt')
+    # mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
+    # print(mundo)      # Deve imprimir ['olá', 'mundo', 'olá']
+    # print(amigo)     # Deve imprimir ['olá', 'amigos']
+    
+    # pega o caminho absoluto do diretório onde este script está localizado
+    DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
+    # cria o caminho para a pasta de testes de forma segura
+    diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
+    # cria o caminho completo para cada arquivo
+    path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
+    path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
+    # carrega os arquivos
+    ola_mundo, ola_amigo = carregar_arquivo(path_ola_mundo), carregar_arquivo(path_ola_amigos)
+
+    mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
+    print(mundo)      # Deve imprimir ['olá', 'mundo', 'olá']
+    print(amigo)     # Deve imprimir ['olá', 'amigos']
 
     ## Testes Problema 1: Obter frequências
     #diretorio_teste = "testes/testes_estudantes/"
