@@ -172,18 +172,18 @@ if __name__ == "__main__":
 
     ## Teste do Problema 0: Preparar dados
     # pega o caminho absoluto do diretório onde este script está localizado
-    DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
-    # cria o caminho para a pasta de testes de forma segura
-    diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
-    # cria o caminho completo para cada arquivo
-    path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
-    path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
-    # carrega os arquivos
-    ola_mundo, ola_amigo = carregar_arquivo(path_ola_mundo), carregar_arquivo(path_ola_amigos)
+    # DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
+    # # cria o caminho para a pasta de testes de forma segura
+    # diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
+    # # cria o caminho completo para cada arquivo
+    # path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
+    # path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
+    # # carrega os arquivos
+    # ola_mundo, ola_amigo = carregar_arquivo(path_ola_mundo), carregar_arquivo(path_ola_amigos)
 
-    mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
-    print(mundo)      # Deve imprimir ['olá', 'mundo', 'olá']
-    print(amigo)     # Deve imprimir ['olá', 'amigos']
+    # mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
+    # print(mundo)      # Deve imprimir ['olá', 'mundo', 'olá']
+    # print(amigo)     # Deve imprimir ['olá', 'amigos']
 
     ## Testes Problema 1: Obter frequências
     #diretorio_teste = "testes/testes_estudantes/"
