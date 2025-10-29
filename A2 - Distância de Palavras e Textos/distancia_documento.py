@@ -328,21 +328,21 @@ if __name__ == "__main__":
     # print(mais_frequente)      # Deve imprimir ["mundo", "ola"]
 
     ## Testes Problema 5: Encontre TF-IDF
-    # pega o caminho absoluto do diretório onde este script está localizado
-    DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
-    # cria o caminho para a pasta de testes de forma segura
-    diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
-    # cria o caminho completo para cada arquivo
-    path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
-    path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
+    # # pega o caminho absoluto do diretório onde este script está localizado
+    # DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
+    # # cria o caminho para a pasta de testes de forma segura
+    # diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
+    # # cria o caminho completo para cada arquivo
+    # path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
+    # path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
     
-    tf_arquivo = path_ola_mundo
-    idf_arquivos = [path_ola_mundo, path_ola_amigos]
+    # tf_arquivo = path_ola_mundo
+    # idf_arquivos = [path_ola_mundo, path_ola_amigos]
 
-    tf = obter_tf(tf_arquivo)
-    idf = obter_idf(idf_arquivos)
-    tf_idf = obter_tfidf(tf_arquivo, idf_arquivos)
+    # tf = obter_tf(tf_arquivo)
+    # idf = obter_idf(idf_arquivos)
+    # tf_idf = obter_tfidf(tf_arquivo, idf_arquivos)
 
-    print(tf)     # Deve imprimir {'ola': 0.6666666666666666, 'mundo': 0.3333333333333333}
-    print(idf)    # Deve imprimir {'ola': 0.0, 'mundo': 0.3010299956639812, 'amigos': 0.3010299956639812}
-    print(tf_idf) # Deve imprimir [('ola', 0.0), ('mundo', 0.10034333188799373)]
+    # print(tf)     # Deve imprimir {'ola': 0.6666666666666666, 'mundo': 0.3333333333333333}
+    # print(idf)    # Deve imprimir {'ola': 0.0, 'mundo': 0.3010299956639812, 'amigos': 0.3010299956639812}
+    # print(tf_idf) # Deve imprimir [('ola', 0.0), ('mundo', 0.10034333188799373)]
