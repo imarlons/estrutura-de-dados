@@ -192,20 +192,20 @@ if __name__ == "__main__":
 
     ## Testes Problema 1: Obter frequências
     # pega o caminho absoluto do diretório onde este script está localizado
-    DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
-    # cria o caminho para a pasta de testes de forma segura
-    diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
-    # cria o caminho completo para cada arquivo
-    path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
-    path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
-    # carrega os arquivos
-    ola_mundo, ola_amigo = carregar_arquivo(path_ola_mundo), carregar_arquivo(path_ola_amigos)
+    # DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
+    # # cria o caminho para a pasta de testes de forma segura
+    # diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
+    # # cria o caminho completo para cada arquivo
+    # path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
+    # path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
+    # # carrega os arquivos
+    # ola_mundo, ola_amigo = carregar_arquivo(path_ola_mundo), carregar_arquivo(path_ola_amigos)
 
-    mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
-    freq_mundo_mundo = obter_frequencia(mundo)
-    freq_amigo_mundo = obter_frequencia(amigo)
-    print(freq_mundo_mundo)    # Deve imprimir {'olá': 2, 'mundo': 1}
-    print(freq_amigo_mundo)   # Deve imprimir {'olá': 1, 'amigos': 1}
+    # mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
+    # freq_mundo_mundo = obter_frequencia(mundo)
+    # freq_amigo_mundo = obter_frequencia(amigo)
+    # print(freq_mundo_mundo)    # Deve imprimir {'olá': 2, 'mundo': 1}
+    # print(freq_amigo_mundo)   # Deve imprimir {'olá': 1, 'amigos': 1}
 
     # Testes Problema 2: Frequencia de letras
     #freq1 = obter_frequencia_letras('berro')
