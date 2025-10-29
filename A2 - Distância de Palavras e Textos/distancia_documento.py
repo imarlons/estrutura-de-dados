@@ -101,8 +101,23 @@ def calcula_pontuacao_similaridade(dicionario1, dicionario2):
       O valor de retorno desta função será 1-(DIFF/ALL) arredondado para 
       2 casas decimais.
     """
-    pass
+    ALL = sum(dicionario1.values()) + sum(dicionario2.values())
 
+    if ALL == 0:
+        return 1.0
+    
+    todas_as_chaves = set(dicionario1.keys()).union(set(dicionario2.keys()))
+
+    DIFF = 0
+
+    for chave in todas_as_chaves:
+        freq1 = dicionario1.get(chave, 0)
+        freq2 = dicionario2.get(chave, 0)
+
+        DIFF += abs(freq1 - freq2)
+
+    similaridade = 1 - (DIFF / ALL)
+    return round(similaridade, 2)
 
 ### Problema 4: Palavras mais frequentes  ###
 def palavras_mais_frequentes(dicionario1, dicionario2):
@@ -219,22 +234,31 @@ if __name__ == "__main__":
     # print(freq2)      #  Deve imprimir {'s': 2, 'o': 1, 'i': 1}
 
     ## Testes Problema 3: Similaridade
-    #diretorio_teste = "testes/testes_estudantes/"
-    #ola_mundo, ola_amigo = carregar_arquivo(diretorio_teste + 'ola_mundo.txt'), carregar_arquivo(diretorio_teste + 'ola_amigos.txt')
-    #mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
-    #freq_mundo_mundo = obter_frequencia(mundo)
-    #freq_amigo_mundo = obter_frequencia(amigo)
-    #freq_palavra1 = obter_frequencia_letras('pato')
-    #freq_palavra2 = obter_frequencia_letras('sois')
-    #freq_palavra3 = obter_frequencia('nuh')
-    #similaridade_palavra1 = calcula_pontuacao_similaridade(freq_palavra1, freq_palavra1)
-    #similaridade_palavra2 = calcula_pontuacao_similaridade(freq_palavra1, freq_palavra2)
-    #similaridade_palavra3 = calcula_pontuacao_similaridade(freq_palavra1, freq_palavra3)
-    #similaridade_palavra4 = calcula_pontuacao_similaridade(freq_mundo_mundo, freq_amigo_mundo)
-    #print(similaridade_palavra1)       # Deve imprimir 1.0
-    #print(similaridade_palavra2)       # Deve imprimir 0.25
-    #print(similaridade_palavra3)       # Deve imprimir 0.0
-    #print(similaridade_palavra4)       # Deve imprimir 0.4
+    # pega o caminho absoluto do diretório onde este script está localizado
+    DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
+    # cria o caminho para a pasta de testes de forma segura
+    diretorio_teste = os.path.join(DIR_BASE_SCRIPT, 'testes', 'testes_estudantes')
+    # cria o caminho completo para cada arquivo
+    path_ola_mundo = os.path.join(diretorio_teste, 'ola_mundo.txt')
+    path_ola_amigos = os.path.join(diretorio_teste, 'ola_amigos.txt')
+    # carrega os arquivos
+    ola_mundo, ola_amigo = carregar_arquivo(path_ola_mundo), carregar_arquivo(path_ola_amigos)
+
+
+    mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
+    freq_mundo_mundo = obter_frequencia(mundo)
+    freq_amigo_mundo = obter_frequencia(amigo)
+    freq_palavra1 = obter_frequencia_letras('pato')
+    freq_palavra2 = obter_frequencia_letras('sois')
+    freq_palavra3 = obter_frequencia('nuh')
+    similaridade_palavra1 = calcula_pontuacao_similaridade(freq_palavra1, freq_palavra1)
+    similaridade_palavra2 = calcula_pontuacao_similaridade(freq_palavra1, freq_palavra2)
+    similaridade_palavra3 = calcula_pontuacao_similaridade(freq_palavra1, freq_palavra3)
+    similaridade_palavra4 = calcula_pontuacao_similaridade(freq_mundo_mundo, freq_amigo_mundo)
+    print(similaridade_palavra1)       # Deve imprimir 1.0
+    print(similaridade_palavra2)       # Deve imprimir 0.25
+    print(similaridade_palavra3)       # Deve imprimir 0.0
+    print(similaridade_palavra4)       # Deve imprimir 0.4
 
     ## Testes Problema 4: Palavras mais comuns
     #freq_dic1, freq_dic2 = {"ola": 5, "mundo": 1}, {"ola": 1, "mundo": 5}
