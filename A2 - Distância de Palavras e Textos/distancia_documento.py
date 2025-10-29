@@ -171,12 +171,6 @@ if __name__ == "__main__":
     ###############################################################
 
     ## Teste do Problema 0: Preparar dados
-    # diretorio_teste = "A2 - Distância de Palavras e Textos/testes/"
-    # ola_mundo, ola_amigo = carregar_arquivo(diretorio_teste + 'ola_mundo.txt'), carregar_arquivo(diretorio_teste + 'ola_amigos.txt')
-    # mundo, amigo = texto_para_lista(ola_mundo), texto_para_lista(ola_amigo)
-    # print(mundo)      # Deve imprimir ['olá', 'mundo', 'olá']
-    # print(amigo)     # Deve imprimir ['olá', 'amigos']
-    
     # pega o caminho absoluto do diretório onde este script está localizado
     DIR_BASE_SCRIPT = os.path.dirname(os.path.realpath(__file__))
     # cria o caminho para a pasta de testes de forma segura
