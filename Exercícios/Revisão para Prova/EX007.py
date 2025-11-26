@@ -11,3 +11,9 @@ def intercala(listaA, listaB):
     return resultado
 
 print(intercala([1, 2, 3], ['a', 'b', 'c']))
+
+# def intercala(listaA, listaB):
+#     resultado = []
+#     for a, b in zip(listaA, listaB):
+#         resultado.extend([a, b])
+#     return resultado
